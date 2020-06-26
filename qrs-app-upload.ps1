@@ -55,18 +55,18 @@
 # Default to node where script is executed and the executing user
 param (
     [Parameter()]
-    [string] $UserName   = $env:USERNAME,
+    [string] $UserName = $env:USERNAME,
     [Parameter()]
     [string] $UserDomain = $env:USERDOMAIN,
     [Parameter()]
-    [string] $FQDN       = [string][System.Net.Dns]::GetHostByName(($env:computerName)).Hostname,
+    [string] $FQDN = [string][System.Net.Dns]::GetHostByName(($env:computerName)).Hostname,
     [Parameter()]
     [string] $CertIssuer = [string][System.Net.Dns]::GetHostByName(($env:computerName)).Hostname,
     [Parameter()]
-    [string] $Output     = $PSScriptRoot,
+    [string] $Output = $PSScriptRoot,
     [Parameter()]
     [string] $AppName,
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string] $AppQVFPath,
     [Parameter()]
     [switch] $KeepData = $true,
@@ -78,7 +78,7 @@ param (
 
 # Qlik Sense client certificate to be used for connection authentication
 # Note, certificate lookup must return only one certificate.
-$ClientCert = Get-ChildItem -Path "Cert:\CurrentUser\My" | Where-Object {$_.Issuer -like "*$($CertIssuer)*"}
+$ClientCert = Get-ChildItem -Path "Cert:\CurrentUser\My" | Where-Object { $_.Issuer -like "*$($CertIssuer)*" }
 
 # Timestamp for output files
 $ScriptTime = Get-Date -Format "ddMMyyyyHHmmss"
@@ -95,20 +95,19 @@ $XrfKey = "12345678qwertyui"
 
 # HTTP headers to be used in REST API call
 $HttpHeaders = @{}
-$HttpHeaders.Add("X-Qlik-Xrfkey","$XrfKey")
+$HttpHeaders.Add("X-Qlik-Xrfkey", "$XrfKey")
 $HttpHeaders.Add("X-Qlik-User", "UserDirectory=$UserDomain;UserId=$UserName")
 
-if (!$AppName) {$AppName =$AppQVFPath.Replace(".qvf", "").Replace(" ","") }
+if (!$AppName) { $AppName = $AppQVFPath.Replace(".qvf", "").Replace(" ", "") }
 
-$AppName = $AppName.Split("/")[-1].Replace("""","")
+$AppName = $AppName.Split("/")[-1].Replace("""", "")
 
-$FileAppDetails      = "$Output\QRS_App_$AppName`_$ScriptTime.json"
-$FileAppDetails      = "$Output\QRS_App$AppName`_$ScriptTime.json"
+$FileAppDetails = "$Output\QRS_App_$AppName`_$ScriptTime.json"
+$FileAppDetails = "$Output\QRS_App$AppName`_$ScriptTime.json"
 
 $URI = "https://$($FQDN):4242/qrs/app/upload?xrfkey=$($xrfkey)&keepdata=$($KeepData)&excludeconnections=$($ExcludeConnections)&name=$($AppName)"
 
-if ($Trace)
-{
+if ($Trace) {
     Write-Host "FileAppDetails: $FileAppDetails"
     Write-Host "Body: $HttpBody"
     Write-Host "PSS root : $PSScriptRoot"
@@ -119,19 +118,17 @@ if ($Trace)
 }
 
 # Invoke REST API call - /qrs/app/upload , Uploads an app into QMC
-try
-{
+try {
     Invoke-RestMethod -Uri $URI `
-                      -Method POST `
-                      -Headers $HttpHeaders `
-                      -ContentType "application/vnd.qlik.sense.app" `
-                      -InFile $AppQVFPath `
-                      -Certificate $ClientCert | `
-    ConvertTo-Json -Depth 10 | `
-    Out-File -FilePath "$FileAppDetails"
+        -Method POST `
+        -Headers $HttpHeaders `
+        -ContentType "application/vnd.qlik.sense.app" `
+        -InFile $AppQVFPath `
+        -Certificate $ClientCert | `
+        ConvertTo-Json -Depth 10 | `
+        Out-File -FilePath "$FileAppDetails"
 }
-catch [System.Net.WebException]
-{
+catch [System.Net.WebException] {
     Write-Verbose "An exception was caught: $($_.Exception.Message)"
     $_.Exception.Response
 }
