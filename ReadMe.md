@@ -14,9 +14,9 @@ get-help .\myscript.ps1 -Detailed
 
 ## References 
 
-* (Qlik Sense for Administrators: Monitoring a Qlik Sense Enterprise on Windows site)[https://help.qlik.com/en-US/sense-admin/June2020/Subsystems/DeployAdministerQSE/Content/Sense_DeployAdminister/QSEoW/Administer_QSEoW/Monitoring_QSEoW/Monitor-Qlik-Sense-site.htm]
-* (Qlik Sense for Developers: Upload App )[https://help.qlik.com/en-US/sense-developer/June2020/Subsystems/RepositoryServiceAPI/Content/Sense_RepositoryServiceAPI/RepositoryServiceAPI-App-Upload-App.htm]
-* (QRS API: POST /app/upload)[https://help.qlik.com/en-US/sense-developer/APIs/RepositoryServiceAPI/index.html?page=318]
+* [Qlik Sense for Administrators: Monitoring a Qlik Sense Enterprise on Windows site](https://help.qlik.com/en-US/sense-admin/June2020/Subsystems/DeployAdministerQSE/Content/Sense_DeployAdminister/QSEoW/Administer_QSEoW/Monitoring_QSEoW/Monitor-Qlik-Sense-site.htm)
+* [Qlik Sense for Developers: Upload App](https://help.qlik.com/en-US/sense-developer/June2020/Subsystems/RepositoryServiceAPI/Content/Sense_RepositoryServiceAPI/RepositoryServiceAPI-App-Upload-App.htm)
+* [QRS API: POST /app/upload](https://help.qlik.com/en-US/sense-developer/APIs/RepositoryServiceAPI/index.html?page=318)
 
 ## License
 
