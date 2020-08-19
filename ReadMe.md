@@ -1,6 +1,6 @@
-# Qlik Sense Monitoring Apps helful Scripts
+# Import and setup of Monitoring Apps for Qlik Sense Enterprise on Windows
 
-This project contains generic and basic exmaples of how to use various Qlik Sense Repository Service (QRS) API to help to expedite the configuration of the Monitoring Applications 
+This project contains generic Powershell scripts which utilize Qlik Sense Repository Service (QRS) API to help to expedite the configuration of the Qlik Sense Monitoring Apps. 
 
 ## Get-Help
 
@@ -13,15 +13,10 @@ get-help .\myscript.ps1 -Detailed
 ```
 
 ## References 
-APIs
 
-### QRS API endpoints
-
-* **App: Upload app**
-
-https://help.qlik.com/en-US/sense-developer/April2020/Subsystems/RepositoryServiceAPI/Content/Sense_RepositoryServiceAPI/RepositoryServiceAPI-App-Upload-App.htm
-https://help.qlik.com/en-US/sense-developer/April2020/APIs/RepositoryServiceAPI/index.html?page=318
-
+* (Qlik Sense for Administrators: Monitoring a Qlik Sense Enterprise on Windows site)[https://help.qlik.com/en-US/sense-admin/June2020/Subsystems/DeployAdministerQSE/Content/Sense_DeployAdminister/QSEoW/Administer_QSEoW/Monitoring_QSEoW/Monitor-Qlik-Sense-site.htm]
+* (Qlik Sense for Developers: Upload App )[https://help.qlik.com/en-US/sense-developer/June2020/Subsystems/RepositoryServiceAPI/Content/Sense_RepositoryServiceAPI/RepositoryServiceAPI-App-Upload-App.htm]
+* (QRS API: POST /app/upload)[https://help.qlik.com/en-US/sense-developer/APIs/RepositoryServiceAPI/index.html?page=318]
 
 ## License
 
